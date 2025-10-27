@@ -13,8 +13,7 @@ Predict whether a borrower will default or not using **Logistic Regression**.
 
 - **Model Type:** Classification  
 - **Output:** *Probability of Default (PD)*  
-- **Example:** Logistic Regression predicts PD = 0.12 → 12% chance of default  
-- **Metrics:** Confusion Matrix, ROC Curve, AUC, Accuracy  
+- **Example:** Logistic Regression predicts PD = 0.12 → 12% chance of default 
 
 ---
 
@@ -23,8 +22,7 @@ Estimate borrower-specific expected loss using **Multivariate Linear Regression*
 
 - **Model Type:** Regression  
 - **Output:** *Loss Given Default (LGD)* (continuous)  
-- **Example:** Predicted Expected Loss = \$900 for a \$10,000 loan → LGD = 9%  
-- **Metrics:** R² Score, RMSE, Residual Analysis  
+- **Example:** Predicted Expected Loss = \$900 for a \$10,000 loan → LGD = 9%
 
 ---
 
@@ -33,7 +31,7 @@ Benchmark and interpret advanced tree-based models (**Random Forest**, **XGBoost
 
 - **Goal:** Capture non-linear borrower behavior missed by linear models  
 - **Outputs:** Feature Importance, Decision Tree Visualization, AUC/Accuracy Comparison  
-- **Use Case:** Identify key variables (e.g., credit score × DTI interaction) driving default risk  
+- **Use Case:** Identify non-linear variables (e.g., credit score × DTI interaction) driving default risk  
 
 ---
 
@@ -46,7 +44,7 @@ Combine model outputs to simulate **loan approval** and **pricing decisions**.
 - EAD = Loan Amount (Exposure at Default)
 
 **Formula**
-> 🧮 Expected Loss = PD × LGD × EAD  
+> Expected Loss = PD × LGD × EAD  
 
 **Example**
 > PD = 0.12, LGD = 0.09, EAD = \$10,000 →  
@@ -57,8 +55,8 @@ Combine model outputs to simulate **loan approval** and **pricing decisions**.
 - Portfolio-level KPIs by FICO tier  
 - Approval rate, average loss, and risk-adjusted interest rate visualization  
 
-### 1️⃣ Project Mind Map
-![Credit Risk Simulator](public/Credit Risk Simulator.png)
+### 🖼 Project Mind Map
+![Credit Risk Simulator](public/Credit%20Risk%20Simulator.png)
 ---
 
 ## 🎨 Tech Stack
@@ -87,7 +85,7 @@ Combine model outputs to simulate **loan approval** and **pricing decisions**.
 
 This simulator is ideal for:
 
-- Demonstrating **credit risk modeling workflows** in interviews or workshops  
+- Demonstrating **credit risk modeling workflows**
 - Understanding **how different ML models contribute** to credit underwriting decisions  
 - Exploring **AI-driven pricing and portfolio management** for lending institutions  
 
@@ -95,7 +93,4 @@ This simulator is ideal for:
 
 ## 🌐 Try it Out
 
-Check out the live app here: [T-Mobile Device Liability & Credit Forecasting Tool](https://t-mobile-device-credit.streamlit.app/)  
-
-# Run the app
-streamlit run credit_demo_v2.py
+Check out the live app here: [Credit Risk Simulator](https://hr-credit-risk-simulator.streamlit.app/)
