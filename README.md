@@ -39,9 +39,9 @@ Benchmark and interpret advanced tree-based models (**Random Forest**, **XGBoost
 Combine model outputs to simulate **loan approval** and **pricing decisions**.
 
 **Inputs**
-- PD (from Logistic Regression)  
-- LGD (from Linear Regression)  
-- EAD = Loan Amount (Exposure at Default)
+- PD = Probability of Default (from Logistic Regression)  
+- LGD = Loss Given Default (from Linear Regression)  
+- EAD = Exposure at Default (Loan Amount)
 
 **Formula**
 > Expected Loss = PD × LGD × EAD  
