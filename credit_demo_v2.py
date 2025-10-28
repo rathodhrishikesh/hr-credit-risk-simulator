@@ -263,7 +263,7 @@ with tabs[0]:
         """)
 
         st.markdown(f"""
-        **True Positive Rate (TPR / Recall)** = TP / (TP + FN) 
+        **True Positive Rate (TPR / Recall)** = TP / (TP + FN)  
         **False Positive Rate (FPR)** = FP / (FP + TN)
         """)
 
