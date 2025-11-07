@@ -38,6 +38,8 @@ st.markdown(
     """
     Interactive demo that generates synthetic borrower data, trains classical and tree-based models,
     and simulates a simplified credit underwriting & pricing workflow.
+    
+    Github: https://github.com/rathodhrishikesh/hr-credit-risk-simulator/
     """
 )
 
