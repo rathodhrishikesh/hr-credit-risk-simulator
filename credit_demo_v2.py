@@ -471,57 +471,62 @@ with tabs[3]:
     avg_loss = sim_df["expected_loss_sim"].mean()
     avg_interest = base_rate + risk_premium_mult * (sim_df["pd_model"] * 0.2)  # simple risk premium
 
-    col7, col8 = st.columns([1, 1])
+    col7, col8, col9 = st.columns([1, 1, 1])
     with col7:
         st.metric("Approval rate", f"{approve_rate:.1%}")
-        st.metric("Average expected loss (USD)", f"{avg_loss:,.2f}")
 
     with col8:
         st.metric("Avg offered interest (annual %)", f"{(avg_interest.mean() * 100):.2f}%")
+    
+    with col9:
+        st.metric("Average expected loss (USD)", f"{avg_loss:,.2f}")
 
-    # Histogram
-    st.subheader("Expected Loss distribution and approval segmentation")
-    fig_hist, ax = plt.subplots()
-    ax.hist(
-        [
-            sim_df.loc[sim_df["approved"], "expected_loss_sim"],
-            sim_df.loc[~sim_df["approved"], "expected_loss_sim"],
-        ],
-        bins=50,
-        stacked=True,
-        label=["Approved", "Rejected"],
-    )
-    ax.set_xlabel("Expected loss (USD)")
-    ax.set_ylabel("Number of loans")
-    ax.legend()
-    st.pyplot(fig_hist)
-
-    # Table of portfolio KPIs by FICO tier
-    st.subheader("Portfolio KPIs by FICO tier")
-    kpi = sim_df.groupby("fico_tier").apply(
-        lambda d: pd.Series(
-            {
-                "count": len(d),
-                "approval_rate": d["approved"].mean(),
-                "avg_expected_loss": d["expected_loss_sim"].mean(),
-                "avg_pd": d["pd_model"].mean(),
-            }
+    col10, col11 = st.columns([1, 1])    
+    with col10:
+        # Histogram
+        st.subheader("Expected Loss distribution and approval segmentation")
+        fig_hist, ax = plt.subplots()
+        ax.hist(
+            [
+                sim_df.loc[sim_df["approved"], "expected_loss_sim"],
+                sim_df.loc[~sim_df["approved"], "expected_loss_sim"],
+            ],
+            bins=50,
+            stacked=True,
+            label=["Approved", "Rejected"],
         )
-    ).reset_index().sort_values("approval_rate", ascending=False)  # ✅ Sort by approval rate descending
-    st.dataframe(kpi)
+        ax.set_xlabel("Expected loss (USD)")
+        ax.set_ylabel("Number of loans")
+        ax.legend()
+        st.pyplot(fig_hist)
+    
+    with col11:
+        # Table of portfolio KPIs by FICO tier
+        st.subheader("Portfolio KPIs by FICO tier")
+        kpi = sim_df.groupby("fico_tier").apply(
+            lambda d: pd.Series(
+                {
+                    "count": len(d),
+                    "approval_rate": d["approved"].mean(),
+                    "avg_expected_loss": d["expected_loss_sim"].mean(),
+                    "avg_pd": d["pd_model"].mean(),
+                }
+            )
+        ).reset_index().sort_values("approval_rate", ascending=False)  # ✅ Sort by approval rate descending
+        st.dataframe(kpi)
 
-    # Allow downloading the simulated portfolio
-    @st.cache_data
-    def to_csv_download(df_in):
-        return df_in.to_csv(index=False).encode("utf-8")
+        # Allow downloading the simulated portfolio
+        @st.cache_data
+        def to_csv_download(df_in):
+            return df_in.to_csv(index=False).encode("utf-8")
 
-    csv = to_csv_download(sim_df.head(10000))
-    st.download_button(
-        "Download simulated portfolio (first 10k rows)",
-        data=csv,
-        file_name="simulated_portfolio.csv",
-        mime="text/csv",
-    )
+        csv = to_csv_download(sim_df.head(10000))
+        st.download_button(
+            "Download simulated portfolio (first 10k rows)",
+            data=csv,
+            file_name="simulated_portfolio.csv",
+            mime="text/csv",
+        )
 
 # ------------------------ Wrap up / Notes ------------------------
 st.markdown("---")
