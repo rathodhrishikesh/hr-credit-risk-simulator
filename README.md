@@ -5,6 +5,9 @@ A **Streamlit-based interactive simulator** demonstrating how **AI and machine l
 This tool generates **synthetic borrower data**, trains multiple **ML models** (Logistic Regression, Linear Regression, Random Forest, XGBoost), and simulates real-world lending workflows such as **expected loss estimation**, **loan approval**, and **dynamic pricing**.
 
 ---
+## 🌐 Try it Out
+
+Live Demo: [Credit Risk Simulator](https://hr-credit-risk-simulator.streamlit.app/)
 
 ## 🚀 Features
 
@@ -90,7 +93,3 @@ This simulator is ideal for:
 - Exploring **AI-driven pricing and portfolio management** for lending institutions  
 
 ---
-
-## 🌐 Try it Out
-
-Check out the live app here: [Credit Risk Simulator](https://hr-credit-risk-simulator.streamlit.app/)
