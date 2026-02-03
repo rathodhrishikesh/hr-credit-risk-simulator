@@ -230,7 +230,7 @@ with tabs[0]:
     **Output:** Probability of Default (PD)
     """)
     
-    col1, col2, col12 = st.columns([1,1,1])
+    col1, col2 = st.columns([1.5, 2.5])
 
     # Predictions & metrics
     y_pred_proba = logreg.predict_proba(X_test)[:, 1]
@@ -280,6 +280,8 @@ with tabs[0]:
         st.write("AUC: %.3f" % roc_auc)
         st.write("Accuracy: %.3f" % accuracy_score(y_test_class, y_pred))
    
+    col12, col13 = st.columns([1, 1])
+    
     with col12:
         # Coefficients
         st.subheader("Logistic Regression — Coefficient importance")
@@ -293,7 +295,6 @@ with tabs[0]:
         ax.barh(coef_df["feature"], coef_df["coef"])
         ax.set_title("Logistic Coefficients")
         st.pyplot(fig_coef)
-
 
 # Module 2 — Linear Regression (Tab 1)
 with tabs[1]:
