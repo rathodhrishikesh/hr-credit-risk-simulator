@@ -230,7 +230,7 @@ with tabs[0]:
     **Output:** Probability of Default (PD)
     """)
     
-    col1, col2 = st.columns([1.5, 2.5])
+    col1, col2, col12 = st.columns([1,1,1])
 
     # Predictions & metrics
     y_pred_proba = logreg.predict_proba(X_test)[:, 1]
@@ -280,18 +280,19 @@ with tabs[0]:
         st.write("AUC: %.3f" % roc_auc)
         st.write("Accuracy: %.3f" % accuracy_score(y_test_class, y_pred))
    
-    # Coefficients
-    st.subheader("Logistic Regression — Coefficient importance")
-    # extract coefficients from pipeline
-    coef = logreg.named_steps["logisticregression"].coef_[0]
-    scaler = logreg.named_steps["standardscaler"]
-    # For standardized effect-size visualization, use coefficients
-    coef_df = pd.DataFrame({"feature": features, "coef": coef})
-    coef_df = coef_df.sort_values("coef")
-    fig_coef, ax = plt.subplots(figsize=(6, 3))
-    ax.barh(coef_df["feature"], coef_df["coef"])
-    ax.set_title("Logistic Coefficients")
-    st.pyplot(fig_coef)
+    with col12:
+        # Coefficients
+        st.subheader("Logistic Regression — Coefficient importance")
+        # extract coefficients from pipeline
+        coef = logreg.named_steps["logisticregression"].coef_[0]
+        scaler = logreg.named_steps["standardscaler"]
+        # For standardized effect-size visualization, use coefficients
+        coef_df = pd.DataFrame({"feature": features, "coef": coef})
+        coef_df = coef_df.sort_values("coef")
+        fig_coef, ax = plt.subplots(figsize=(6, 3))
+        ax.barh(coef_df["feature"], coef_df["coef"])
+        ax.set_title("Logistic Coefficients")
+        st.pyplot(fig_coef)
 
 
 # Module 2 — Linear Regression (Tab 1)
